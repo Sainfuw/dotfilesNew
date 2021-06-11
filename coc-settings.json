@@ -1,0 +1,26 @@
+{
+      "diagnostic.errorSign": "✘",
+      "diagnostic.warningSign": "",
+      "diagnostic.infoSign": "",
+      "suggest.noselect": true,
+      "eslint.options": {
+            "env": {
+                  "browser": true,
+                  "node": true
+            }
+      },
+      "coc.preferences.formatOnSaveFiletypes": [
+            "markdown",
+            "javascript",
+            "javascriptreact",
+            "typescript",
+            "typescriptreact",
+            "json",
+            "graphql"
+      ],
+      "tsserver.enableJavascript": true,
+      "typescript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
+      "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+      "typescript.preferences.quoteStyle": "double",
+      "typescript.referencesCodeLens.enable": false
+}
