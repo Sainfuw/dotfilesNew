@@ -9,12 +9,10 @@
 set number
 set mouse=a
 set numberwidth=1
-set clipboard=unnamed
+set clipboard=unnamedplus
 syntax on
 set showcmd
 set ruler
-set cursorline
-set guicursor=a:blinkon100
 set encoding=UTF-8
 set showmatch
 set sw=2
@@ -75,6 +73,7 @@ imap jj <Esc>
 syntax enable
 set termguicolors
 colorscheme gruvbox 
+set guicursor=
 
 " Airline config
 let g:airline_powerline_fonts = 1
@@ -118,7 +117,7 @@ nnoremap <leader>l gt
 nnoremap <leader>h gT
 
 " Coc nvim 
-let g:coc_global_extensions = ['coc-emmet', 'coc-css', 'coc-json', 'coc-html', 'coc-prettier', 'coc-snippets', 'coc-tslint-plugin', 'coc-tsserver', 'coc-styled-components']
+let g:coc_global_extensions = ['coc-emmet', 'coc-css', 'coc-json', 'coc-html', 'coc-prettier', 'coc-snippets', 'coc-tslint-plugin', 'coc-tsserver', 'coc-styled-components', 'coc-sh']
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()

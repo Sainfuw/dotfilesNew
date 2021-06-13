@@ -1,4 +1,4 @@
-ZSH_TMUX_AUTOSTART=true
+# ZSH_TMUX_AUTOSTART=true
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -10,7 +10,7 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/oops/.oh-my-zsh"
+export ZSH="/home/sainfuw/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -85,15 +85,20 @@ plugins=(
   zsh-autosuggestions
 )
 
-# Configuracion para el autosuggestions
-# git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-# bindkey '^j' autosuggest-accept
-
 source $ZSH/oh-my-zsh.sh
 
+# Manual aliases
+alias ll='lsd -lh --group-dirs=first'
+alias la='lsd -a --group-dirs=first'
+alias l='lsd --group-dirs=first'
+alias lla='lsd -lha --group-dirs=first'
+alias ls='lsd --group-dirs=first'
 alias cat='bat'
+alias catn='/usr/bin/cat'
+alias sdn='sudo shutdown -h now'
+
 alias v='openNeovim'
-alias l='colorls --dir-color=12,132,187 --file-color=12,192,115 -- -a . ./config'
+
 bindkey '^j' autosuggest-accept
 
 # User configuration
@@ -124,7 +129,6 @@ bindkey '^j' autosuggest-accept
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 function openNeovim {
