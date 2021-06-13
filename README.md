@@ -1,17 +1,20 @@
 # dotfilesNew
 
-#INSTALACIONES:
+[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
-zsh
-powerlevel10k
-zsh-syntax-highlighting y zsh-autosuggestions
-lsd github descargar la ultima version - bat github ultima version tambien
+## _INSTALACIONES_
 
-#Configuracion de Nvim:
+- zsh
+- powerlevel10k
+- zsh-syntax-highlighting y zsh-autosuggestions
+- lsd github descargar la ultima version
+- bat github ultima version tambien
 
-Intalaciones previas:
-init.vim debe ir en ~/.config/nvim/init.vim
-instalar vim-plug descargar de github
-instalar git, nodejs, yarn, python3
-pip install pynvim
-sudo npm i -g neovim \* sudo apt install ripgrep
+## _Configuracion de Nvim_
+#### Instalaciones previas:
+- init.vim debe ir en ~/.config/nvim/init.vim
+- instalar vim-plug descargar de github
+- instalar git, nodejs, yarn, python3
+- pip install pynvim
+- sudo npm i -g neovim
+- udo apt install ripgrep
