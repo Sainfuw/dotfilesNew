@@ -1,11 +1,3 @@
-"Configuraion de Nvim
-" Intalaciones previas:
-" init.vim debe ir en ~/.config/nvim/init.vim
-" y los pluggins en ~/.config/nvim/site/autoload/plug.vim
-" instalar git, nodejs, yarn, python3
-" pip install pynvim
-" sudo npm i -g neovim
-" sudo apt install ripgrep
 set number
 set mouse=a
 set numberwidth=1
