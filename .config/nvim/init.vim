@@ -1,3 +1,11 @@
+
+" Intalaciones previas:
+" init.vim debe ir en ~/.config/nvim/init.vim
+" y los pluggins en ~/.config/nvim/site/autoload/plug.vim
+" instalar git, nodejs, yarn, python3
+" pip install pynvim
+" sudo npm i -g neovim
+" sudo apt install ripgrep
 set number
 set mouse=a
 set numberwidth=1
@@ -68,11 +76,17 @@ colorscheme gruvbox
 set guicursor=
 
 " Airline config
-let g:airline_powerline_fonts = 1
-let g:airline_theme='default'
-let g:airline_section_b = '%{getcwd()}'
+let g:airline_theme='badwolf'
+" let g:airline_powerline_fonts = 1
+" let g:airline_section_b = '%{getcwd()}'
 
 " Tabline
+let g:airline_stl_path_style = 'short'
+let g:airline#extensions#fzf#enabled = 1
+let g:airline_section_c_only_filename = 1
+let g:airline#extensions#nerdtree_statusline = 1
+let g:airline#extensions#coc#enabled = 0
+
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#tabline#tabs_label = ''
@@ -109,7 +123,7 @@ nnoremap <leader>l gt
 nnoremap <leader>h gT
 
 " Coc nvim 
-let g:coc_global_extensions = ['coc-emmet', 'coc-css', 'coc-json', 'coc-html', 'coc-prettier', 'coc-snippets', 'coc-tslint-plugin', 'coc-tsserver', 'coc-styled-components', 'coc-sh']
+let g:coc_global_extensions = ['coc-emmet', 'coc-css', 'coc-json', 'coc-html', 'coc-prettier', 'coc-snippets', 'coc-tslint-plugin', 'coc-tsserver', 'coc-styled-components', 'coc-sh', 'coc-eslint']
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
