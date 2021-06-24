@@ -1,4 +1,3 @@
-
 " Intalaciones previas:
 " init.vim debe ir en ~/.config/nvim/init.vim
 " y los pluggins en ~/.config/nvim/site/autoload/plug.vim
@@ -39,7 +38,6 @@ let mapleader = " "
 call plug#begin('~/.vim/plugged')
   " Themes
   Plug 'morhetz/gruvbox'
-  " Plug 'sickill/vim-monokai'
   " IDE
   Plug 'yuezk/vim-js'
   Plug 'leafgarland/typescript-vim'
@@ -63,6 +61,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
   Plug 'ryanoasis/vim-devicons'
   Plug 'SirVer/ultisnips'
+  Plug 'mlaursen/vim-react-snippets'
 
   Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 call plug#end()
@@ -77,8 +76,6 @@ set guicursor=
 
 " Airline config
 let g:airline_theme='badwolf'
-" let g:airline_powerline_fonts = 1
-" let g:airline_section_b = '%{getcwd()}'
 
 " Tabline
 let g:airline_stl_path_style = 'short'
@@ -102,6 +99,10 @@ let g:airline#extensions#tabline#show_tab_type = 0
 " Easymotion config
 nmap <leader>s <Plug>(easymotion-s2)
 nmap <F6> ysiw)F x
+nmap <F5> ciw<<Esc>pa></<Esc>pa><Esc>F>a
+
+" macros
+" let @p="ciw<\<Esc>pa></\<Esc>pa>\<Esc>F>a"
 
 " NERDTree
 let NERDTreeQuitOnOpen=1
@@ -134,6 +135,7 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gu <Plug>(coc-codeaction)
+let g:coc_snippet_next = '<tab>'
 
 " Prevent x from overriding what's in the clipboard
 noremap x "_x
@@ -144,12 +146,12 @@ nnoremap <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
 
 " Emmac with tab
-imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
-let g:user_emmet_settings = {
-  \  'javascript.jsx' : {
-  \      'extends' : 'jsx',
-  \  },
-  \}
+" imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+" let g:user_emmet_settings = {
+"   \  'javascript.jsx' : {
+"   \      'extends' : 'jsx',
+"   \  },
+"   \}
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
