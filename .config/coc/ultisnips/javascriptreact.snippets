@@ -23,7 +23,7 @@
 #		endsnippet
 #
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
-snippet rfn "Description"
+snippet rfn "Description" b
 import React from 'react';
 import {View, StyleSheet, Text} from 'react-native';
 
@@ -38,7 +38,7 @@ export const ${TM_FILENAME_BASE} = () => {
 const styles = StyleSheet.create({})
 endsnippet
 
-snippet testing "Description"
+snippet testing "Description" b
 import "@testing-library/jest-dom";
 
 describe("Pruebas en ${TM_FILENAME_BASE}", () => {
@@ -48,13 +48,13 @@ describe("Pruebas en ${TM_FILENAME_BASE}", () => {
 });
 endsnippet
 
-snippet test "Description"
+snippet test "Description" b
 test("${1}", () => {
 	${0}
 });
 endsnippet
 
-snippet rfc "Description"
+snippet rfc "Description" b
 import React from 'react';
 
 export const ${TM_FILENAME_BASE} = () => {
@@ -66,16 +66,16 @@ export const ${TM_FILENAME_BASE} = () => {
 };
 endsnippet
 
-snippet imr "Import component"
+snippet imr "Import component" b
 import { ${0} } from "./${0}";
 endsnippet
 
-snippet sheet "StyleSheet"
+snippet sheet "StyleSheet" b
 const styles = StyleSheet.create({
 	${0}
 })
 endsnippet
 
-snippet clg "console log"
+snippet clg "console log" w
 console.log(${0});
 endsnippet
