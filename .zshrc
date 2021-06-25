@@ -92,7 +92,8 @@ alias ll='lsd -lh --group-dirs=first'
 alias la='lsd -a --group-dirs=first'
 alias l='lsd --group-dirs=first'
 alias lla='lsd -lha --group-dirs=first'
-alias ls='lsd --group-dirs=first'
+# alias ls='lsd --group-dirs=first'
+alias ls='lsd -l --group-dirs=first'
 alias cat='bat'
 alias catn='/usr/bin/cat'
 alias sdn='sudo shutdown -h now'
@@ -134,3 +135,8 @@ bindkey '^j' autosuggest-accept
 function openNeovim {
   if [ -z "$1" ]; then nvim .; else nvim $1; fi
 }
+
+autoload -Uz compinit
+compinit
+# Completion for kitty
+kitty + complete setup zsh | source /dev/stdin
