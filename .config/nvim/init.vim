@@ -98,16 +98,17 @@ let g:airline#extensions#tabline#show_tab_type = 0
 
 " Easymotion config
 nmap <leader>s <Plug>(easymotion-s2)
+nmap <F8> viwyA></<Esc>pa><Esc>F>a
 nmap <F6> ysiw)F x
 nmap <F5> ciw<<Esc>pa></<Esc>pa><Esc>F>a
 
-" macros
+" Ejemplo de macros
 " let @p="ciw<\<Esc>pa></\<Esc>pa>\<Esc>F>a"
 
 " NERDTree
 let NERDTreeQuitOnOpen=1
 let NERDTreeShowHidden=1
-nmap <leader>n :NERDTreeToggle<CR>
+nnoremap <silent> <expr> <leader>n g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
 
 " FZF
 nmap <C-p> :Files<CR>
@@ -124,7 +125,7 @@ nnoremap <leader>l gt
 nnoremap <leader>h gT
 
 " Coc nvim 
-let g:coc_global_extensions = ['coc-emmet', 'coc-css', 'coc-json', 'coc-html', 'coc-prettier', 'coc-snippets', 'coc-tslint-plugin', 'coc-tsserver', 'coc-styled-components', 'coc-sh', 'coc-eslint']
+let g:coc_global_extensions = ['coc-emmet', 'coc-css', 'coc-json', 'coc-html', 'coc-prettier', 'coc-snippets', 'coc-tslint-plugin', 'coc-tsserver', 'coc-styled-components', 'coc-sh', 'coc-eslint', 'coc-cssmodules']
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
