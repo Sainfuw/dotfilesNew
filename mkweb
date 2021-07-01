@@ -1,0 +1,165 @@
+#!/bin/bash
+NAME=$1
+WGET=$(which wget)
+
+if [ -z "$WGET" ]; then
+  echo "wget not detected. Install with sudo apt-get install wget"
+  exit
+fi
+
+yarn create @vitejs/app $NAME --template react-ts >/dev/null
+cd "$NAME"
+git init
+cd src
+rm App.css logo.svg
+mkdir {components,helpers,hooks,pages,tests}
+cd ..
+mkdir public
+
+cat >.gitignore << EOF
+node_modules/
+dist/
+EOF
+
+cat >src/main.tsx<< EOF
+import React from 'react'
+import ReactDOM from 'react-dom'
+import './index.css'
+import App from './App'
+
+ReactDOM.render(
+    <App />,
+  document.getElementById('root')
+)
+EOF
+
+cat >src/setupTests.js<< EOF
+import Enzyme from "enzyme";
+import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
+import { createSerializer } from "enzyme-to-json";
+
+Enzyme.configure({ adapter: new Adapter() });
+expect.addSnapshotSerializer(createSerializer({ mode: "deep" }));
+EOF
+
+cat >src/tests/App.test.js<< EOF
+import React from "react";
+import "@testing-library/jest-dom";
+import { shallow } from "enzyme";
+import App from "../App";
+
+describe("Pruebas en App.test", () => {
+  test("asdfasdf", () => {
+    const wrapper = shallow(<App />);
+    expect(wrapper).toMatchSnapshot();
+  });
+});
+EOF
+
+cat >src/App.tsx<< EOF
+import React from "react";
+
+const App = () => {
+  return (
+    <div className="App">
+    </div>
+  );
+};
+
+export default App;
+EOF
+
+cat >tsconfig.json << EOF
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react"
+  },
+  "include": [
+    "src"
+  ]
+}
+EOF
+
+cat >.stylelintrc << EOF
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "declaration-colon-newline-after": "always-multi-line",
+    "selector-type-no-unknown": null,
+    "property-no-unknown": [true, {
+        "ignoreProperties": ["content-visibility"]
+    }]
+  }
+}
+EOF
+
+yarn add -D \
+    stylelint stylelint-config-standard \
+    eslint eslint-config-standard eslint-plugin-import \
+    eslint-plugin-node eslint-plugin-promise \
+    postcss-nesting gh-pages typescript@3.9.4 @types/typescript@2.0.0 \
+    jest babel-jest @babel/core @babel/preset-env \
+    @babel/preset-react @babel/preset-typescript \
+    @testing-library/jest-dom enzyme @types/enzyme \
+    enzyme-to-json @wojtekmaj/enzyme-adapter-react-17 \
+    @types/@wojtekmaj/enzyme-adapter-react-17
+
+cat >package.js << EOF
+const fs = require("fs");
+fs.readFile("./package.json.bak", "utf-8", function (err, data) {
+  if (err) return console.log(err);
+  const json = JSON.parse(data);
+  json["scripts"]["test"] = "jest --watch";
+
+  json["jest"] = {
+      "roots": [
+      "<rootDir>/src"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/setupTests.js"
+    ],
+    "testEnvironment": "jsdom",
+    "resetMocks": true
+  };
+
+  json["babel"] = {
+    presets: [
+      "@babel/preset-env",
+      "@babel/preset-react",
+      "@babel/preset-typescript",
+    ],
+  };
+
+  console.log(JSON.stringify(json));
+});
+EOF
+
+mv package.json package.json.bak
+node package.js | jq > package.json
+rm package.js
+rm package.json.bak
+
+cat << EOF
+¡Listo! Para empezar, escribe:
+
+cd $NAME
+yarn dev
+EOF
