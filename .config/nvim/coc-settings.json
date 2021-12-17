@@ -9,6 +9,7 @@
                   "node": true
             }
       },
+      "emmet.includeLanguages": { "eruby": "html" },
       "coc.preferences.formatOnSaveFiletypes": [
             "markdown",
             "javascript",

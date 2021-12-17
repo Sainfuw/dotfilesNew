@@ -10,7 +10,7 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/sainfuw/.oh-my-zsh"
+export ZSH="/home/oops/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -74,8 +74,6 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
@@ -98,7 +96,10 @@ alias cat='bat'
 alias catn='/usr/bin/cat'
 alias sdn='sudo shutdown -h now'
 
-alias v='openNeovim'
+alias gd='batdiff'
+
+alias vi='openNeovim'
+alias h='hopFolder'
 
 bindkey '^j' autosuggest-accept
 
@@ -136,7 +137,16 @@ function openNeovim {
   if [ -z "$1" ]; then nvim .; else nvim $1; fi
 }
 
+function hopFolder {
+  folder=$(pwd); cd ~; cd $folder
+}
+
+function batdiff {
+  git diff --name-only --diff-filter=d | xargs bat --diff
+}
+
 autoload -Uz compinit
 compinit
-# Completion for kitty
-kitty + complete setup zsh | source /dev/stdin
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

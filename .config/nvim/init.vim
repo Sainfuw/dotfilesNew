@@ -16,15 +16,13 @@ set encoding=UTF-8
 set showmatch
 set sw=2
 set relativenumber
-highlight Normal ctermbg=NONE
 set laststatus=2
 set noshowmode
-
-" Javascript
-autocmd bufnewfile,bufread *.tsx set filetype=typescript.tsx
-autocmd bufnewfile,bufread *.ts set filetype=typescript.tsx
-autocmd bufnewfile,bufread *.jsx set filetype=javascript.jsx
-autocmd bufnewfile,bufread *.js set filetype=javascript.jsx
+set foldmethod=indent
+set foldnestmax=10
+set nofoldenable
+set foldlevel=2
+" set keymap=colemak
 
 "" Searching
 set hlsearch                    " highlight matches
@@ -34,6 +32,8 @@ set smartcase
 
 " leader key
 let mapleader = " "
+" nnoremap <CR> <Nop>
+" map <CR> <leader>
 
 call plug#begin('~/.vim/plugged')
   " Themes
@@ -66,7 +66,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 call plug#end()
 
-imap jj <Esc>
+" imap jj <Esc>
 
 " Theme config
 syntax enable
@@ -78,9 +78,9 @@ set guicursor=
 let g:airline_theme='badwolf'
 
 " Tabline
-let g:airline_stl_path_style = 'short'
+" let g:airline_stl_path_style = 'short'
+" let g:airline_section_c_only_filename = 1
 let g:airline#extensions#fzf#enabled = 1
-let g:airline_section_c_only_filename = 1
 let g:airline#extensions#nerdtree_statusline = 1
 let g:airline#extensions#coc#enabled = 0
 
@@ -119,6 +119,10 @@ nnoremap <leader>j <C-W><C-J>
 nnoremap <leader>k <C-W><C-K>
 nnoremap <C-l> <C-W><C-L>
 nnoremap <C-h> <C-W><C-H>
+
+" Script for change keyboard layout
+nnoremap <silent> <expr> <F4> system('~/.config/bin/keyboard-toggle.sh')
+inoremap <silent> <expr> <F4> system('~/.config/bin/keyboard-toggle.sh')
 
 " Switch between tabs
 nnoremap <leader>l gt
@@ -163,3 +167,18 @@ function! s:show_documentation()
     execute '!' . &keywordprg . " " . expand('<cword>')
   endif
 endfunction
+
+hi! Normal ctermbg=NONE guibg=NONE
+hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
+
+" Javascript
+autocmd bufnewfile,bufread *.tsx set filetype=typescript.tsx
+autocmd bufnewfile,bufread *.ts set filetype=typescript.tsx
+autocmd bufnewfile,bufread *.jsx set filetype=javascript.jsx
+autocmd bufnewfile,bufread *.js set filetype=javascript.jsx
+
+" Ruby
+autocmd bufnewfile,bufread *.pdf.erb set filetype=html
+autocmd bufnewfile,bufread *.pdf.erb set syntax=html
+autocmd bufnewfile,bufread *.xlsx.axlsx set filetype=ruby
+autocmd bufnewfile,bufread *.xlsx.axlsx set syntax=ruby
